@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Goon City</title>
+
+<script type="text/javascript">
+
+var myValues = new Array();
+
+
+
+function parseURL()
+
+{
+
+	searchString = document.location.search;
+
+	searchString = searchString.substring(1);
+
+	nvPairs = searchString.split("&");
+
+
+
+	for ( var a=0; a<nvPairs.length; a++ )
+
+	{
+
+		nvPair = nvPairs[a].split("=");
+
+		myValues[nvPair[0]] = nvPair[1];
+
+	}
+
+}
+
+
+
+// Issue Parse URL Command
+
+parseURL();
+
+
+
+if ( typeof( myValues["x"] ) != "undefined" )
+
+{
+
+	var getString = "";
+
+	
+
+	for ( var i in myValues )
+
+	{
+
+		var getString = getString + myValues[i] + "&";
+
+	}
+
+	window.location = "http://gooncity.com/city.htm?" + getString;
+
+}
+
+</script>
+
+</head>
+
+
+
+<body>
+
+<p align="center">Welcome to Gooncity. <a href="http://www.facebook.com/pages/Dapper-Gentlemen/272046625380">Our next collaborative art project is starting soon. Check here for updates</a>.</p>
+
+<p align="center"><a href="city.htm">Enter the city here.</a></p>
+
+<p align="center"><a href="city.htm"><img src="GreatJob-tutugodzilla.gif" alt="gooncity" width="250" height="274" border="0" /></a></p>
+
+<p align="center">A project by <a href="http://ryanallen.com/2008/08/gooncity-a-pixel-art-project/">RyanAllen.com</a> and <a href="http://forums.somethingawful.com/showthread.php?threadid=2929126">SomethingAwful</a>.</p>
+<script type="text/javascript">
+
+var pageTracker = _gat._getTracker("UA-256793-10");
+
+pageTracker._trackPageview();
+
+  </script>
+</body>
+
+</html>
+

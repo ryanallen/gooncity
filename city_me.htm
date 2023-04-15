@@ -1,0 +1,329 @@
+<!DOCTYPE html "-//W3C//DTD XHTML 1.0 Strict//EN"   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+<head>
+
+
+
+<!-- Thanks to no3rdw.com for google maps help -->
+
+<!-- Thanks to wtfserve.com for hosting -->
+
+
+
+<!-- A RyanAllen.com Project -->
+
+
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+
+
+<title>Goon City</title>
+
+
+
+<style type="text/css">
+
+
+
+		html, body {			
+
+
+
+		height: 100%;			
+
+
+
+		margin: 0px;			
+
+
+
+		padding: 0px;		
+
+
+
+		}				
+
+
+
+		#message {			
+
+
+
+		border: 1px solid white;			
+
+
+
+		width: 600px;			
+
+
+
+		height: 20px;			
+
+
+
+		left: 0px;			
+
+
+
+		bottom: 0px;			
+
+
+
+		position: absolute;			
+
+
+
+		color: black;		
+
+
+
+		}	
+
+
+
+        </style>	
+
+                   
+
+
+
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAQWNPKnqK-64lftLox0kBqRQ0Mn9WX2gJ0xEII6Li6d522FoNcxTWN0-BnWP3c6rp6vXzvTB-o-2p1g" type="text/javascript"></script>
+
+
+
+<script type="text/javascript">	var myValues = new Array();	var map;
+
+
+
+	function CustomGetTileUrl(a,b) {
+
+
+
+			var f = "tiles/"+b+"_"+a.x+"_"+a.y+".gif";
+
+
+
+					return f;	
+
+
+
+					}
+
+
+
+					    function initialize() {	 parseURL();
+
+
+
+						if (GBrowserIsCompatible()) {
+
+
+
+						map = new GMap2(document.getElementById("map_canvas"));
+
+
+
+						var copyCollection = new GCopyrightCollection('Map');
+
+
+
+						var copyright = new GCopyright(1, new GLatLngBounds(new GLatLng(-90, -180), new GLatLng(90, 180)), 0, "<a href='http://ryanallen.com/2008/08/gooncity-a-pixel-art-project/' style=\"color:red;font-weight:bold;\"> -- A Project by Goons -- </a> <a href='http://twitter.com/rwallen' style=\"color:white;font-weight:bold;\"> &nbsp; Follow Ryan on Twitter  </a>"); copyCollection.addCopyright(copyright);
+
+
+
+						var tilelayers = [new GTileLayer(copyCollection, 10, 13)];
+
+
+
+						tilelayers[0].getTileUrl = CustomGetTileUrl;
+
+
+
+						var custommap = new GMapType(tilelayers, new GMercatorProjection(14), "Map", {errorMessage:"Goon City is always expanding!"});
+
+
+
+						map.addMapType(custommap);
+
+
+
+						if (myValues["x"] != "" && myValues["x"] == parseFloat(myValues["x"]) &&
+
+
+
+						myValues["y"] != "" && myValues["y"] == parseFloat(myValues["y"]) &&
+
+
+
+						myValues["z"] != "" && myValues["z"] > 9 && myValues["z"] < 14) {
+
+
+
+						map.setCenter(new GLatLng(parseFloat(myValues["y"]), parseFloat(myValues["x"])), parseInt(myValues["z"]));
+
+
+
+						} else {
+
+
+
+						map.setCenter(new GLatLng(-0.7226752345561989, 0.4729270935058594), 13);
+
+
+
+						}
+
+
+
+						map.setMapType(custommap);
+
+
+
+						map.addControl(new GLargeMapControl());
+
+
+
+						GEvent.addListener(map, "click", displayMessage);
+
+
+
+						map.enableScrollWheelZoom();
+
+
+
+						new GKeyboardHandler(map);
+
+
+
+						}
+
+
+
+						}
+
+
+
+						function parseURL() {
+
+
+
+						searchString = document.location.search;
+
+
+
+						searchString = searchString.substring(1);
+
+
+
+						nvPairs = searchString.split("&");
+
+
+
+						for (var a=0; a<nvPairs.length; a++) {
+
+
+
+						nvPair = nvPairs[a].split("=");
+
+
+
+						myValues[nvPair[0]] = nvPair[1];
+
+
+
+						}
+
+
+
+						}
+
+
+
+						function displayMessage(overlay, latlng) {
+
+
+
+						document.getElementById("message").innerHTML = "x: "+latlng.lng()+ " y: "+latlng.lat()+ " <a href=\"http://www.gooncity.com/city.htm?x="+latlng.lng()+"&y="+latlng.lat()+"&z="+map.getZoom()+"\" style=\"color:white;font-weight:bold;\">[link]</a>";	}
+
+
+
+						
+
+
+
+</script>
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+
+<body onload="initialize()" onunload="GUnload()">
+
+
+
+<div id="map_canvas" style="width: 100%; height: 100%"></div>
+
+
+
+<div id="message"></div>
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+
+
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+
+
+
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+
+
+
+</script>
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+
+
+var pageTracker = _gat._getTracker("UA-256793-10");
+
+
+
+pageTracker._trackPageview();
+
+
+
+</script>
+
+
+
+</body></html>
