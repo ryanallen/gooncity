@@ -14,6 +14,14 @@
             white-space: nowrap;
             cursor: grab;
         }
+
+        .highlight {
+            /* filter: sepia(0.9) hue-rotate(360deg) saturate(10); */
+
+            border: red;
+            box-sizing: border-box;
+            border-style: solid;
+        }
     </style>
     <div id="gooncity_tiles" class="img_container">
     </div>
@@ -21,13 +29,22 @@
         const image_container = document.getElementById("gooncity_tiles");
         let all_images_gif = '';
         let all_images_png = '';
-        for (let y = 4096; y <= 4146; y++) {
-            for (let x = 4096; x <= 4162; x++) {
-                all_images_gif += `<img width="256" height="256" src="tiles/13_${x}_${y}.gif" loading='lazy' draggable="false">`;
+
+        // for (let y = 4096; y <= 4146; y++) {
+        //     for (let x = 4096; x <= 4162; x++) {
+        //         all_images_gif += `<img width="256" height="256" src="tiles/13_${x}_${y}.gif" loading='lazy' draggable="false">`;
+        //     }
+        //     all_images_gif += "<br>"
+        // }
+        // image_container.innerHTML = all_images_gif;
+
+        for (let y = 1; y <= 51; y++) {
+            for (let x = 1; x <= 67; x++) {
+                all_images_png += `<img width="256" height="256" src="tiles_png/${x}_${y}.png" loading='lazy' draggable="false" id="_${x}_${y}" onclick="updateUrl(this)">`;
             }
-            all_images_gif += "<br>"
+            all_images_png += "<br>"
         }
-        image_container.innerHTML = all_images_gif;
+        image_container.innerHTML = all_images_png;
     </script>
     <script>
         let isDragging = false; // flag to track whether the user is dragging
@@ -86,6 +103,29 @@
 
         //     window.scrollTo(newMaxScrollX*relativeScrollPosX, newMaxScrollY*relativeScrollPosY);
         // },{passive:false});
+    </script>
+    <script>
+        window.addEventListener('hashchange', highlight);
+        window.addEventListener('load', highlight);
+        function highlight() {
+            var hash = window.location.hash;
+            if (hash) {
+                var elem = document.getElementById("_"+hash.slice(1));
+                if (elem) {
+                    if (elem.scrollIntoViewIfNeeded) elem.scrollIntoViewIfNeeded();
+                    else elem.scrollIntoView({ behavior: "smooth", block: "nearest" });
+                    
+                    elem.classList.add('highlight');
+                    setTimeout(function() {
+                        elem.classList.remove('highlight');
+                    }, 1000);
+                }
+            }
+        }
+
+        function updateUrl(img) {
+            location.hash = "#" + img.id.slice(1);
+        }
     </script>
 </body>
 
